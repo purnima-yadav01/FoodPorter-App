@@ -1,0 +1,74 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@drawable/rounded_card_bg">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:clipToOutline="true"
+        android:background="@drawable/rounded_image_bg">
+
+        <ImageView
+            android:id="@+id/imageFood"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/burger" />
+
+        <ImageView
+            android:id="@+id/btnAdd"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="8dp"
+            android:background="@drawable/white_circle_bg"
+            android:padding="6dp"
+            android:src="@drawable/plus"
+            android:contentDescription="Add"
+            app:tint="@color/red" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textFoodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Cheese paneer burger"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_marginStart="4dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/startinGprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="From"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/darkgray"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text=" Rs 149.00"
+            android:textColor="@color/darkgray"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

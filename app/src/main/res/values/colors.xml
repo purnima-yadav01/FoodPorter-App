@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="whites">#EEFFFFFF</color>
+    <color name="purple_700">#1ABECC</color>
+    <color name="lightblue">#4F64D8</color>
+    <color name="lightblues">#EDEDF4</color>
+    <color name="lightsblue">#EBEEF3</color>
+    <color name="purple_500">#1ABECC</color>
+    <color name="teal_200">#1ABECC</color>
+    <color name="purple_200">#8774AA</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="blueBlack">#1C2035</color>
+    <color name="black2">#8E8E93</color>
+    <color name="lightblackcolor">#363639</color>
+    <color name="darkgray">#555555</color>
+    <color name="darksgrey">#E9E9EB</color>
+    <color name="bluewhite">#F4F4F8</color>
+    <color name="grey">#D8C8C8</color>
+    <color name="lightGray">#F4EFEF</color>
+    <color name="darkgrey">#D9D9D9</color>
+    <color name="darkgreys">#FBF9F9</color>
+    <color name="lightskyblue1">#76CBD2</color>
+    <color name="grays">#F2F4EFEF</color>
+    <color name="bluegrey">#E5E5EA</color>
+    <color name="green">#1B851E</color>
+    <color name="orange">#E07756</color>
+    <color name="oranges">#DF9881</color>
+    <color name="lightorange">#DF7426</color>
+    <color name="creme"> #F6F6F6</color>
+    <color name="darkWhite">#E8F2FF</color>
+    <color name="lightblue1">#1F7FDC</color>
+    <color name="skyBlue">#15B0B6</color>
+    <color name="skyblue">#1ABECC</color>
+    <color name="lightskyblue">#80DEDF</color>
+    <color name="old_lace">#FFF4E3</color>
+    <color name="orangebg">#F9ECD3</color>
+    <color name="pink">#8E469A</color>
+    <color name="reds">#97000A</color>
+    <color name="red">#C83D52</color>
+    <color name="peachpink">#EADFEA</color>
+    <color name="lightyellows">#C83D52</color>
+    <color name="blue">#1635E1</color>
+    <color name="grey1">#796D71</color>
+    <color name="gray">#9ACACBD3</color>
+    <color name="FFFFFF">#F8F4F4F8</color>
+    <color name="skyblue1">#457185</color>
+    <color name="lightblack">#66000000</color>
+    <color name="yellow">#DDAD1B</color>
+    <color name="lightyellow">#F0C828</color>
+    <color name="background_color">#00000000</color>
+</resources>

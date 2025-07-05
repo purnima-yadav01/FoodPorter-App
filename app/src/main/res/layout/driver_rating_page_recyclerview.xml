@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/reviewCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.94">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tvCustomerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aman Yadav"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvReviewDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12 June 2025"
+                android:textSize="12sp"
+                android:textColor="@color/darkgray"
+                android:paddingTop="2dp" />
+
+            <RatingBar
+                android:id="@+id/reviewRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="4.5"
+                android:isIndicator="true"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/tvReviewComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Very polite and delivered on time!"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black2" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

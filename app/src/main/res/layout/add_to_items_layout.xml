@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/mainConstraint"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <CheckBox
+        android:id="@+id/addCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itemImageConstraint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.2"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintStart_toEndOf="@+id/addCheckbox"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/itemImg"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/favorite_cuisines"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/ItemTextview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Veg Manchurian Bowl"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemImageConstraint"
+        app:layout_constraintWidth_percent="0.4"/>
+
+    <TextView
+        android:id="@+id/itemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+ $ 15.20"
+        android:textSize="14sp"
+        android:textColor="@color/red"
+        android:gravity="end"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/itemsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$ 55.00"
+        android:textSize="14sp"
+        android:textColor="@color/black2"
+        android:gravity="end"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/itemPrice"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/grey"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/mainConstraint"
+        app:layout_constraintWidth_percent=".94"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FoodPorter</string>
+    <string name="unable_to_connect">unable to connect</string>
+    <string name="OK">ok</string>
+    <string name="server_error">server error</string>
+    <string name="login_error">login_error</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_key">AIzaSyBxoFiKEhpV_lzf-i17vjFb9hZZwHSkZGI</string>
+    <string name="selected_location">Select Locations</string>
+</resources>

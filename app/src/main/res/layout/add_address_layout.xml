@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addLocationConst"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/add_location_white_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".92">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".9">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/homeImg"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/home"
+                android:tint="@color/darkgray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/distanceText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="7.9 km"
+                android:textColor="@color/darkgray"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/homeImg" />
+
+            <TextView
+                android:id="@+id/addressTypeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Home"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/homeImg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".7" />
+
+            <TextView
+                android:id="@+id/addAddressText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Raj home pg room number 32, 2 floor, block M, Mamura, sector 66, Noida"
+                android:textColor="@color/darkgray"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/homeImg"
+                app:layout_constraintTop_toBottomOf="@+id/addressTypeText"
+                app:layout_constraintWidth_percent=".8" />
+
+            <TextView
+                android:id="@+id/phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Phone number:"
+                android:textColor="@color/darkgray"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/homeImg"
+                app:layout_constraintTop_toBottomOf="@+id/addAddressText" />
+
+            <TextView
+                android:id="@+id/countryCodeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="+91 -"
+                android:textColor="@color/darkgray"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/phoneNumber"
+                app:layout_constraintTop_toBottomOf="@+id/addAddressText" />
+
+            <TextView
+                android:id="@+id/phoneNumberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="8378847980"
+                android:textColor="@color/darkgray"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/countryCodeText"
+                app:layout_constraintTop_toBottomOf="@+id/addAddressText" />
+
+            <LinearLayout
+                android:id="@+id/deleteLayout"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/grey_circle_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/homeImg"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberText">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/addLocationImg"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/delete"
+                    android:tint="@color/red" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/editAddressLayout"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/grey_circle_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/deleteLayout"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberText">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/editImg"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/edit"
+                    android:tint="@color/red" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

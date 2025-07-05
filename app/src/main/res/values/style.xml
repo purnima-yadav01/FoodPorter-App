@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Material3.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetFullScreen</item>
+    </style>
+
+    <style name="BottomSheetFullScreen" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:layout_height">match_parent</item>
+        <item name="shapeAppearanceOverlay">@style/NoCornerShape</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="NoCornerShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+
+    <style name="BottomLeftCutShape">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeBottomLeft">24dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+    </style>
+
+
+
+
+</resources>

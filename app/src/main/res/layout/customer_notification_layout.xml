@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notificationConst"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".94">
+
+        <LinearLayout
+            android:id="@+id/notificationLay"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/grey_circle_bg"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/downloadImg"
+                android:layout_width="20dp"
+                android:layout_height="16dp"
+                android:src="@drawable/food_fill"
+                android:tint="@color/red" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/notificationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Your Order is Being Prepared!"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@+id/notificationLay"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notificationDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Our chefs are working their magic. Your delicious food will be ready soon!"
+            android:textColor="@color/darkgray"
+            android:textSize="13sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintStart_toEndOf="@+id/notificationLay"
+            app:layout_constraintTop_toBottomOf="@+id/notificationTitle" />
+
+        <View
+            android:id="@+id/notificationLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notificationDescription"
+            app:layout_constraintWidth_percent=".94" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

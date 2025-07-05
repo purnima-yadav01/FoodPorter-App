@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="12dp"
+        android:layout_margin="12dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvCustomerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvCustomerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Rohan"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/tvCustomerLabel"
+                app:layout_constraintTop_toTopOf="@+id/tvCustomerLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/tvDeliveryAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="123 Street, New Delhi"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/tvCustomerLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/tvStatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status:"
+                android:textColor="@color/black2"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/tvDeliveryAddress"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvOrderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Picked Up"
+                android:textColor="@color/black2"
+                app:layout_constraintTop_toTopOf="@+id/tvStatusLabel"
+                app:layout_constraintStart_toEndOf="@+id/tvStatusLabel"
+                android:layout_marginStart="8dp"/>
+
+            <Button
+                android:id="@+id/btnChangeStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mark as Delivered"
+                android:textSize="14sp"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFF"
+                app:layout_constraintTop_toBottomOf="@+id/tvStatusLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

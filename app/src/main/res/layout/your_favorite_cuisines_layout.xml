@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/forYouCardview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="30dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".96">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/forYouConst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/forYouCardviews"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/itemImg"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/favorite_cuisines"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textOffer"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:text="15% off $200"
+                        android:textSize="10sp"
+                        app:layout_constraintWidth_percent=".23"
+                        android:gravity="center"
+                        android:layout_marginTop="12dp"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/pink_round_bg"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="@id/itemImg"
+                        app:layout_constraintStart_toStartOf="@id/itemImg" />
+
+                    <LinearLayout
+                        android:id="@+id/yourGroupsLayout"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/white_circle_bg"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="@+id/itemImg"
+                        app:layout_constraintTop_toTopOf="@+id/itemImg">
+
+                        <ImageView
+                            android:id="@+id/heartImg"
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
+                            android:src="@drawable/heart" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/distanceText"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:text="15-20 mins"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        app:layout_constraintWidth_percent=".2"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/bottom_rounded_white_bg"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/itemImg"
+                        app:layout_constraintEnd_toEndOf="@id/itemImg" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/trandingDestConst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/forYouCardviews"
+                app:layout_constraintWidth_percent=".96">
+
+                <TextView
+                    android:id="@+id/diahesVarietyName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="PizzaExpress(MOKO)"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".65" />
+
+                <TextView
+                    android:id="@+id/ratingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="end"
+                    android:text="(1000+)"
+                    android:textColor="@color/black2"
+                    android:textFontWeight="400"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/ItemRatingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="end"
+                    android:text="4.6"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/ratingText"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ratingImg"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="3dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/star"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ItemRatingText"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/startingPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pizzas Rs.350 for two"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkgray"
+                    app:layout_constraintTop_toBottomOf="@id/diahesVarietyName"
+                    app:layout_constraintStart_toStartOf="@id/diahesVarietyName"
+                    android:layout_marginTop="2dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/foodRupDestConst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@id/trandingDestConst"
+                app:layout_constraintWidth_percent=".96">
+
+                <ImageView
+                    android:id="@+id/bike_rider"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bike_rider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/black2" />
+
+                <TextView
+                    android:id="@+id/rupText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Rs.39."
+                    android:textColor="@color/grey1"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@+id/bike_rider"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/deliveryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="Free delivery"
+                    android:textColor="@color/lightyellows"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/rupText"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

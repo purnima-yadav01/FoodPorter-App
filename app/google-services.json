@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "656382823933",
+    "project_id": "food-porter-a63a0",
+    "storage_bucket": "food-porter-a63a0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656382823933:android:36f7460112a74dce3ddd94",
+        "android_client_info": {
+          "package_name": "com.food.foodporterapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQj9OAGyikKFvIjsokIrGlKCZnKg2Vw2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
