@@ -101,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Menu"
+                android:textStyle="bold"
                 android:textColor="@color/darkgray"
                 android:textSize="12sp" />
 
@@ -131,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Cart"
+                android:textStyle="bold"
                 android:textColor="@color/darkgray"
                 android:textSize="12sp" />
 
@@ -161,6 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Checkout"
+                android:textStyle="bold"
                 android:textColor="@color/darkgray"
                 android:textSize="12sp" />
 

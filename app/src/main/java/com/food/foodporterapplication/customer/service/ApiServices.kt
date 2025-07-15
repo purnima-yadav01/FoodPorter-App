@@ -1,6 +1,10 @@
 package com.food.foodporterapplication.customer.service
 
+
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.addonmeal.AddOnMealResponse
 import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.model.AddCategoryItemResponse
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.updatecartapi.UpdateQuantityBody
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.updatecartapi.UpdateQuantityResponse
 import com.food.foodporterapplication.customer.activity.addnewaddressapi.addaddressmodel.AddAddressBody
 import com.food.foodporterapplication.customer.activity.addnewaddressapi.addaddressmodel.AddAddressResponse
 import com.food.foodporterapplication.customer.activity.addnewaddressapi.deleteadddress.DeleteAddressResponse
@@ -24,16 +28,23 @@ import com.food.foodporterapplication.customer.activity.forgotpasswordapi.model.
 import com.food.foodporterapplication.customer.activity.getrestaurantdetailsapi.RestaurantDetailResponse
 import com.food.foodporterapplication.customer.activity.loginwithphonemunberapi.model.LoginPhoneNumberBody
 import com.food.foodporterapplication.customer.activity.loginwithphonemunberapi.model.LoginPhoneNumberResponse
+import com.food.foodporterapplication.customer.activity.orderdetailpage.model.OrderDetailBody
+import com.food.foodporterapplication.customer.activity.orderdetailpage.model.OrderDetailResponse
 import com.food.foodporterapplication.customer.activity.otpverificationapi.model.OtpVerifyBody
 import com.food.foodporterapplication.customer.activity.otpverificationapi.model.OtpVerifyResponse
 import com.food.foodporterapplication.customer.activity.profileapi.model.GetProfileResponse
 import com.food.foodporterapplication.customer.activity.profileapi.updateprofileapi.UpdateProfileResponse
 import com.food.foodporterapplication.customer.activity.searchbyrestanddihses.model.SearchByRestAndDishesResponse
 import com.food.foodporterapplication.customer.application.FoodPorter
+import com.food.foodporterapplication.customer.fragment.checkoutorderapi.model.CheckoutOrderBody
+import com.food.foodporterapplication.customer.fragment.checkoutorderapi.model.CheckoutOrderResponse
 import com.food.foodporterapplication.customer.fragment.homepage.getallcategory.GetAllCategoryResponse
 import com.food.foodporterapplication.customer.fragment.homepage.getfilterapi.GetFilterListResponse
 import com.food.foodporterapplication.customer.fragment.homepage.getfilteritemlistapi.GetFilterItemListResponse
 import com.food.foodporterapplication.customer.fragment.homepage.model.GetAllRestaurantResponse
+import com.food.foodporterapplication.customer.fragment.myorderlist.cancelorderapi.CancelOrderBody
+import com.food.foodporterapplication.customer.fragment.myorderlist.cancelorderapi.CancelOrderResponse
+import com.food.foodporterapplication.customer.fragment.myorderlist.model.MyOrderListResponse
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -110,9 +121,11 @@ interface ApiServices {
     @Headers("Content-Type:application/json")
     @GET("dishes/category/{category_id}/restaurant/{restaurant_id}")
     fun getAllCategoryItemApi(
+        @Header("Authorization") token: String = FoodPorter.encryptedPrefs.token,
         @Path("category_id") categoryId: Int,
         @Path("restaurant_id") restaurantId: Int,
-    ): Observable<AddCategoryItemResponse>
+
+        ): Observable<AddCategoryItemResponse>
 
 
     @Headers("Content-Type:application/json")
@@ -124,7 +137,7 @@ interface ApiServices {
 
 
     @Headers("Content-Type:application/json")
-    @POST("cart/list")
+    @POST("cart/details")
     fun getCartDetailApi(
         @Header("Authorization") token: String = FoodPorter.encryptedPrefs.token,
     ): Observable<CardItemDetailResponse>
@@ -216,11 +229,48 @@ interface ApiServices {
         @Path("id") id: Int,
         @Body body: UpdateAddressBody,
         @Header("Authorization") token: String = FoodPorter.encryptedPrefs.token,
-        ): Observable<UpdateAddressResponse>
+    ): Observable<UpdateAddressResponse>
 
     @Headers("Content-Type:application/json")
-    @POST("addons/add-meal")
-    fun addOnMeal(
+    @POST("addons/list/{id}")
+    fun addOnMealApi(
+        @Path("id") id: Int,
+    ): Observable<AddOnMealResponse>
 
-    )
+
+    @Headers("Content-Type:application/json")
+    @POST("cart/update")
+    fun updateQuantityApi(
+        @Body body: UpdateQuantityBody,
+        @Header("Authorization") token: String = FoodPorter.encryptedPrefs.token,
+    ): Observable<UpdateQuantityResponse>
+
+
+    @Headers("Content-Type:application/json")
+    @POST("checkout")
+    fun checkoutOrderApi(
+        @Body body: CheckoutOrderBody,
+        @Header("Authorization") token: String = FoodPorter.encryptedPrefs.token,
+    ): Observable<CheckoutOrderResponse>
+
+    @Headers("Content-Type:application/json")
+    @POST("orders")
+    fun myOrderListApi(
+        @Header("Authorization") token: String = FoodPorter.encryptedPrefs.token,
+    ): Observable<MyOrderListResponse>
+
+    @Headers("Content-Type:application/json")
+    @POST("orders/cancel")
+    fun cancelOrderApi(
+        @Body body: CancelOrderBody,
+        @Header("Authorization") token: String = FoodPorter.encryptedPrefs.token,
+    ): Observable<CancelOrderResponse>
+
+    @Headers("Content-Type:application/json")
+@POST("orders/details")
+    fun orderDetailsApi(
+        @Body body: OrderDetailBody,
+        @Header("Authorization") token: String = FoodPorter.encryptedPrefs.token
+    ): Observable<OrderDetailResponse>
+
 }

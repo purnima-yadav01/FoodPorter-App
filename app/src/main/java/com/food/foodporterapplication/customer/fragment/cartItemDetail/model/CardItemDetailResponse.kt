@@ -3,7 +3,6 @@ package com.food.foodporterapplication.customer.fragment.cartItemDetail.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-
 class CardItemDetailResponse {
 
     @SerializedName("success")
@@ -14,65 +13,76 @@ class CardItemDetailResponse {
     @Expose
     var message: String? = null
 
-    @SerializedName("data")
+    @SerializedName("cart")
     @Expose
-    var data: Data? = null
+    var cart: Cart? = null
 
-    class Data {
+    class Cart {
 
-        @SerializedName("cartItems")
+        @SerializedName("items")
         @Expose
-        var cartItems: List<CartItem>? = null
+        var items: List<Item>? = null
 
-        @SerializedName("subtotal")
+        @SerializedName("subTotal")
         @Expose
-        var subtotal: Int? = null
+        var subTotal: Int? = null
 
-        @SerializedName("discount")
+        @SerializedName("standard_delivery")
         @Expose
-        var discount: Int? = null
+        var standardDelivery: Int? = null
 
-        @SerializedName("delivery_charge")
+        @SerializedName("total_price")
         @Expose
-        var deliveryCharge: Int? = null
-
-        @SerializedName("total")
-        @Expose
-        var total: Int? = null
-
-        @SerializedName("coupon")
-        @Expose
-        var coupon: Any? = null
-
-        @SerializedName("you_saved")
-        @Expose
-        var youSaved: Int? = null
+        var totalPrice: Int? = null
     }
 
-    class CartItem {
+    class Item {
+
+        @SerializedName("cart_id")
+        @Expose
+        var cartId: Int? = null
 
         @SerializedName("dish_id")
         @Expose
         var dishId: Int? = null
 
-        @SerializedName("name")
+        @SerializedName("dish_name")
         @Expose
-        var name: String? = null
+        var dishName: String? = null
+
+        @SerializedName("dish_price")
+        @Expose
+        var dishPrice: String? = null
 
         @SerializedName("quantity")
         @Expose
         var quantity: Int? = null
 
+        @SerializedName("image_url")
+        @Expose
+        var imageUrl: String? = null
+
+        @SerializedName("addons")
+        @Expose
+        var addons: List<Addon>? = null
+
+        @SerializedName("total_price")
+        @Expose
+        var totalPrice: Int? = null
+    }
+
+    class Addon {
+
+        @SerializedName("id")
+        @Expose
+        var id: Int? = null
+
+        @SerializedName("name")
+        @Expose
+        var name: String? = null
+
         @SerializedName("price")
         @Expose
         var price: String? = null
-
-        @SerializedName("total")
-        @Expose
-        var total: Int? = null
-
-        @SerializedName("image")
-        @Expose
-        var image: String? = null
     }
 }

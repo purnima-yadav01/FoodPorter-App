@@ -1,7 +1,6 @@
 package com.food.foodporterapplication.customer.activity.addcategoryitemdeatils
 
 import AddonItemAdapter
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -22,8 +21,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cremation.funeralcremation.utils.ErrorUtil
 import com.food.foodporterapplication.R
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.addonmeal.AddOnMealModelView
 import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.model.AddCategoryItemModelView
 import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.model.AddCategoryItemResponse
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.updatecartapi.UpdateQuantityBody
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.updatecartapi.UpdateQuantityModelView
 import com.food.foodporterapplication.customer.activity.addtocartitemapi.model.AddToCartItemBody
 import com.food.foodporterapplication.customer.activity.addtocartitemapi.model.AddToCartModelView
 import com.food.foodporterapplication.customer.activity.cartitemdetailpageapi.CardItemDetailPageActivity
@@ -37,13 +39,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAddOnItemListener, OnQuantityListener{
+class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAddOnItemListener,
+    OnUpdateQuantityListener {
     private lateinit var binding: ActivityMenuItemDetailBinding
     private lateinit var adapter: MenuOfferAdapter
     private val addCategoryItemModelView: AddCategoryItemModelView by viewModels()
+    private val updateQuantityModelView: UpdateQuantityModelView by viewModels()
     private val addToCartModelView: AddToCartModelView by viewModels()
+    private val addOnMealModelView: AddOnMealModelView by viewModels()
     private var addCategoryItemList: List<AddCategoryItemResponse.Datum> = ArrayList()
     private var addToCartItemAdapter: AddToCartItemAdapter? = null
+    private val selectedAddonsMap = mutableMapOf<Int, Int>()
     private var currentPosition = 0
     private var restaurantId: Int = 0
     private var categoryId: Int = 0
@@ -83,10 +89,10 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
         restaurantTime = intent.getStringExtra("restaurantTime").toString()
         restaurantRating = intent.getDoubleExtra("restaurantRating", 0.0)
 
-        binding.textOffer.text =  String.format("%.1f", restaurantRating)
+        binding.textOffer.text = String.format("%.1f", restaurantRating)
         binding.dishesRestarantName.text = restaurantName
         binding.restuarntName.text = restaurantName
-       // binding.addressText.text = restaurantAddress
+        // binding.addressText.text = restaurantAddress
         binding.distanceText.text = restaurantTime
 
         val restAddress = "${restaurantTime}: ${restaurantAddress}"
@@ -106,9 +112,11 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
             i.putExtra("selectedItemPrice", selectedItemPrice)
             i.putExtra("selectedItemDes", itemDescription)
             startActivity(i)
+
         }
 
         getCategoryDetailsApi()
+        updateQuantityObserver()
         getCategoryDetailsObserver()
         addToCartItemObserver()
 
@@ -126,6 +134,7 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
         binding.menuOfferRecyclerview.adapter = adapter
 
         startAutoScroll(data.size)
+
     }
 
     //get all category item menu list api
@@ -143,7 +152,8 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
 
             try {
                 if (success == true) {
-                    addToCartItemAdapter = AddToCartItemAdapter(this, addCategoryItemList, this, this)
+                    addToCartItemAdapter =
+                        AddToCartItemAdapter(this, addCategoryItemList, this, this)
                     binding.menuItemAddRecyclerview.layoutManager = LinearLayoutManager(this)
                     binding.menuItemAddRecyclerview.adapter = addToCartItemAdapter
 
@@ -187,10 +197,6 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
         return total
     }
 
-    override fun quantityClick(itemId: Int, quantity: Int) {
-        updateBottomCartUI()
-    }
-
     private fun startAutoScroll(itemCount: Int) {
         runnable = object : Runnable {
             override fun run() {
@@ -225,6 +231,7 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
         itemDescription = description
         showCustomizationDialog(this, image, itemName, itemPrice, description)
     }
+
     private fun showCustomizationDialog(
         context: Context,
         image: String,
@@ -232,6 +239,7 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
         itemPrice: String,
         description: String,
     ) {
+
         dialog = BottomSheetDialog(context, R.style.BottomSheetDialogTheme)
         val view = LayoutInflater.from(context).inflate(R.layout.item_added_dialog, null)
         dialog!!.setContentView(view)
@@ -249,6 +257,7 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
         val quantityTextItemView = view.findViewById<TextView>(R.id.quantityTextItemView)
         val addLayout = view.findViewById<LinearLayout>(R.id.addLayout)
         val closeLayout = view.findViewById<LinearLayout>(R.id.closeLayout)
+        val itemAddedRecyclerview = view.findViewById<RecyclerView>(R.id.itemAddedRecyclerview)
         val addItemsPriceConst = view.findViewById<ConstraintLayout>(R.id.addItemsPriceConst)
 
         itemTextView.text = itemName
@@ -257,8 +266,10 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
         val cleanPrice = itemPrice.replace(",", "").replace(Regex("[^\\d.]"), "")
         itemPerPrice = cleanPrice.toDoubleOrNull() ?: 0.0
         quantity = 1
-
         baseItemTotal = itemPerPrice * quantity
+
+        selectedAddonsMap.clear()
+        updateTotalPriceInDialog()
 
         quantityTextItemView.text = quantity.toString()
         addItemPrice.text = "Rs.${"%.2f".format(baseItemTotal)}"
@@ -268,10 +279,10 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
             baseItemTotal = itemPerPrice * quantity
             updateTotalPriceInDialog()
 
-            if (quantity > 0){
+            if (quantity > 0) {
                 binding.itemAddedConst.visibility = View.VISIBLE
                 binding.itemAddedQuantityText.text = quantity.toString()
-            }else{
+            } else {
                 binding.itemAddedConst.visibility = View.GONE
             }
         }
@@ -296,21 +307,54 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
             addToCartItemApi()
         }
 
-        val list = listOf(
-            CustomizationItem.SectionHeader("Add On (burger)", "Select up to", 4),
-            CustomizationItem.OptionItem("Cheese Slice", 35),
-            CustomizationItem.OptionItem("Fried Egg", 35),
-            CustomizationItem.OptionItem("Sliced Avocado", 75),
-            CustomizationItem.OptionItem("Bacon (2 Strips)", 95),
-            CustomizationItem.SectionHeader("Add Fries", "Select up to", 5),
-            CustomizationItem.OptionItem("Classic Fries", 155),
-            CustomizationItem.OptionItem("Peri Peri Fries", 155),
-            CustomizationItem.OptionItem("Masala Fries", 160)
-        )
+        addOnMealModelView.updateAddUser(activity = this, id = dishesId)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.itemAddedRecyclerview)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = AddonItemAdapter(list, this)
+
+        addOnMealModelView.mAddOnMealResponse.observe(this) { event ->
+            val response = event.peekContent()
+            if (response.success == true) {
+                val addonItemList = response.data?.addonItems ?: emptyList()
+                val finalList = mutableListOf<CustomizationItem>()
+
+                addonItemList.forEach { addonItem ->
+                    finalList.add(
+                        CustomizationItem.SectionHeader(
+                            title = addonItem.name ?: "",
+                            subtitle = "Select up to ${addonItem.maxSelection}",
+                            maxSelect = addonItem.maxSelection ?: 0
+                        )
+                    )
+
+                    addonItem.addons?.forEach { addon ->
+                        val priceString = addon.price ?: "0"
+                        val cleanedPrice = priceString.replace(Regex("[^\\d]"), "")
+                        val priceInt = cleanedPrice.toIntOrNull() ?: 0
+
+                        finalList.add(
+                            CustomizationItem.OptionItem(
+                                id = addon.id ?: 0,
+                                name = addon.name ?: "",
+                                price = priceInt
+                            )
+                        )
+                    }
+                }
+
+                itemAddedRecyclerview.layoutManager = LinearLayoutManager(context)
+                itemAddedRecyclerview.adapter = AddonItemAdapter(finalList, this)
+            } else {
+                Toast.makeText(
+                    context,
+                    response.message ?: "Failed to load Addons",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        addOnMealModelView.errorResponse.observe(this) {
+            ErrorUtil.handlerGeneralError(this, it)
+        }
+
         dialog!!.show()
     }
 
@@ -322,11 +366,11 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
             return
         }
 
-        val addToCartBody = AddToCartItemBody(
+       /* val addToCartBody = AddToCartItemBody(
             dish_id = dishesId,
             quantity = savedQuantity
-        )
-        addToCartModelView.addToCartUser(activity, addToCartBody)
+        )*/
+       // addToCartModelView.addToCartUser(activity, addToCartBody)
     }
 
     private fun addToCartItemObserver() {
@@ -341,7 +385,7 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
                     dialog?.dismiss()
                     binding.itemAddedQuantityText.text = quantity.toString()
                     Log.e("dishesIdASD", "dishesId..$dishesId.....$quantity")
-                    addToCartItemAdapter?.updateItemQuantity(dishesId, quantity)
+                 //   addToCartItemAdapter?.updateItemQuantity(dishesId, quantity)
 
                 } else {
 
@@ -358,18 +402,53 @@ class MenuItemDetailActivity : AppCompatActivity(), OnAddItemClickListener, OnAd
         }
     }
 
-    override fun onItemCheckedChanged(price: Int, isChecked: Boolean) {
-        if (isChecked) {
-            selectedAddonTotal += price
-        } else {
-            selectedAddonTotal -= price
+    //update quantity api
+    override fun quantityClick(position: Int, itemId: Int, quantity: Int) {
+        updateBottomCartUI()
+
+        val updateBody = UpdateQuantityBody(
+            dish_id = itemId.toString(),
+            quantity = quantity.toString()
+        )
+
+        updateQuantityModelView.updateQuantityUser(this, updateBody)
+    }
+
+    // Observer method
+    private fun updateQuantityObserver() {
+        updateQuantityModelView.progressIndicator.observe(this) {
         }
+
+        updateQuantityModelView.mUpdateQuantityResponse.observe(this) {
+            val response = it.peekContent()
+            if (response.success == true) {
+                Log.d("QuantityUpdate", "Success: ${response.message}")
+                getCategoryDetailsApi()  // ✅ Refresh item list with updated data
+            } else {
+                Toast.makeText(this, response.message ?: "Failed to update quantity", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        updateQuantityModelView.errorResponse.observe(this) {
+            ErrorUtil.handlerGeneralError(this, it)
+        }
+    }
+
+    override fun onItemCheckedChanged(price: Int, isChecked: Boolean, itemId: Int) {
+        if (isChecked) {
+            selectedAddonsMap[itemId] = price
+
+        } else {
+            selectedAddonsMap.remove(itemId)
+        }
+
         updateTotalPriceInDialog()
     }
 
     private fun updateTotalPriceInDialog() {
+        selectedAddonTotal = (selectedAddonsMap.values.sum() * quantity).toDouble()
         val total = baseItemTotal + selectedAddonTotal
         dialog?.findViewById<TextView>(R.id.addItemPrice)?.text = "Rs.${"%.2f".format(total)}"
-
     }
+
 }

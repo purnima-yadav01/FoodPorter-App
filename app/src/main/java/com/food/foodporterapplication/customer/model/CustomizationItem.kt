@@ -9,6 +9,7 @@ sealed class CustomizationItem {
     ) : CustomizationItem()
 
     data class OptionItem(
+        var id: Int,
         val name: String,
         val price: Int,
         var isSelected: Boolean = false

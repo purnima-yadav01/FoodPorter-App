@@ -1,6 +1,9 @@
 package com.food.foodporterapplication.customer.repository
 
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.addonmeal.AddOnMealResponse
 import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.model.AddCategoryItemResponse
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.updatecartapi.UpdateQuantityBody
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.updatecartapi.UpdateQuantityResponse
 import com.food.foodporterapplication.customer.activity.addnewaddressapi.addaddressmodel.AddAddressBody
 import com.food.foodporterapplication.customer.activity.addnewaddressapi.addaddressmodel.AddAddressResponse
 import com.food.foodporterapplication.customer.activity.addnewaddressapi.deleteadddress.DeleteAddressResponse
@@ -26,17 +29,25 @@ import com.food.foodporterapplication.customer.activity.forgotpasswordapi.model.
 import com.food.foodporterapplication.customer.activity.getrestaurantdetailsapi.RestaurantDetailResponse
 import com.food.foodporterapplication.customer.activity.loginwithphonemunberapi.model.LoginPhoneNumberBody
 import com.food.foodporterapplication.customer.activity.loginwithphonemunberapi.model.LoginPhoneNumberResponse
+import com.food.foodporterapplication.customer.activity.orderdetailpage.model.OrderDetailBody
+import com.food.foodporterapplication.customer.activity.orderdetailpage.model.OrderDetailResponse
 import com.food.foodporterapplication.customer.activity.otpverificationapi.model.OtpVerifyBody
 import com.food.foodporterapplication.customer.activity.otpverificationapi.model.OtpVerifyResponse
 import com.food.foodporterapplication.customer.activity.profileapi.model.GetProfileResponse
 import com.food.foodporterapplication.customer.activity.profileapi.updateprofileapi.UpdateProfileResponse
 import com.food.foodporterapplication.customer.activity.searchbyrestanddihses.model.SearchByRestAndDishesResponse
 import com.food.foodporterapplication.customer.application.FoodPorter
+import com.food.foodporterapplication.customer.fragment.checkoutorderapi.model.CheckoutOrderBody
+import com.food.foodporterapplication.customer.fragment.checkoutorderapi.model.CheckoutOrderResponse
 import com.food.foodporterapplication.customer.fragment.homepage.getallcategory.GetAllCategoryResponse
 import com.food.foodporterapplication.customer.fragment.homepage.getfilterapi.GetFilterListResponse
 import com.food.foodporterapplication.customer.fragment.homepage.getfilteritemlistapi.GetFilterItemListResponse
 import com.food.foodporterapplication.customer.fragment.homepage.model.GetAllRestaurantResponse
+import com.food.foodporterapplication.customer.fragment.myorderlist.cancelorderapi.CancelOrderBody
+import com.food.foodporterapplication.customer.fragment.myorderlist.cancelorderapi.CancelOrderResponse
+import com.food.foodporterapplication.customer.fragment.myorderlist.model.MyOrderListResponse
 import com.food.foodporterapplication.customer.service.ApiServices
+import com.google.zxing.oned.OneDReader
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
@@ -80,7 +91,8 @@ class Repository @Inject constructor(private val services: ApiServices) {
     }
 
     fun getAllCategoryItemRepository(categoryId: Int, restaurantId: Int): Observable<AddCategoryItemResponse>{
-        return services.getAllCategoryItemApi(categoryId, restaurantId)
+        val token = "Bearer ${FoodPorter.encryptedPrefs.token}"
+        return services.getAllCategoryItemApi(token, categoryId, restaurantId)
     }
 
     fun addToCartRepository(body: AddToCartItemBody): Observable<AddToCartResponse>{
@@ -160,6 +172,37 @@ class Repository @Inject constructor(private val services: ApiServices) {
     fun updateAddressRepository(id: Int, body: UpdateAddressBody): Observable<UpdateAddressResponse>{
         val token = "Bearer ${FoodPorter.encryptedPrefs.token}"
         return services.updateAddressApi(id, body, token)
+    }
+
+    fun addOnMealRepository(id:  Int): Observable<AddOnMealResponse>{
+        return services.addOnMealApi(id)
+    }
+
+    fun updateQuantityRepository(body: UpdateQuantityBody): Observable<UpdateQuantityResponse>{
+        val token = "Bearer ${FoodPorter.encryptedPrefs.token}"
+        return services.updateQuantityApi(body, token)
+    }
+
+
+    fun checkoutOrderRepository(body: CheckoutOrderBody): Observable<CheckoutOrderResponse>{
+        val token = "Bearer ${FoodPorter.encryptedPrefs.token}"
+        return services.checkoutOrderApi(body, token)
+    }
+
+    fun orderListRepository(): Observable<MyOrderListResponse>{
+        val token = "Bearer ${FoodPorter.encryptedPrefs.token}"
+        return services.myOrderListApi(token)
+    }
+
+
+    fun cancelOrderRepository(body: CancelOrderBody): Observable<CancelOrderResponse>{
+        val token = "Bearer ${FoodPorter.encryptedPrefs.token}"
+        return services.cancelOrderApi(body, token)
+    }
+
+    fun orderDetailRepository(body: OrderDetailBody): Observable<OrderDetailResponse>{
+        val token = "Bearer ${FoodPorter.encryptedPrefs.token}"
+        return  services.orderDetailsApi(body, token)
     }
 
 }

@@ -40,7 +40,7 @@ class ExploreRestaurantAdapter(
         holder.offerText.text = modelView.offer
         holder.ratingTextPoint.text = modelView.rating.toString()
         holder.itemView.setOnClickListener {
-            val i = Intent(context, RestaurantDishesActivity::class.java)
+            val i = Intent(context, RestaurantDetailsActivity::class.java)
             i.putExtra("restaurantId", modelView.id)
             i.putExtra("restaurantName", modelView.name)
             i.putExtra("restaurantImage", modelView.image)

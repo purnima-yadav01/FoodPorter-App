@@ -71,7 +71,7 @@ class RestaurantDishesActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.filterNameRecycler.adapter = adapter
 
-        val data1 = listOf(
+       /* val data1 = listOf(
             RestaurantDishesModel(),
             RestaurantDishesModel(),
             RestaurantDishesModel(),
@@ -84,6 +84,7 @@ class RestaurantDishesActivity : AppCompatActivity() {
         binding.popularRecycler.layoutManager =
             GridLayoutManager(this,2)
         binding.popularRecycler.adapter = restaurantItemsAdapter
+*/
 
         val data2 = listOf(
             FilterComboModel(),

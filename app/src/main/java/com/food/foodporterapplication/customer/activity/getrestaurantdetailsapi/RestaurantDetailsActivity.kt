@@ -57,8 +57,8 @@ class RestaurantDetailsActivity : AppCompatActivity() {
         Glide.with(this).load(imageUrl).into(binding.restaurantImg)
         binding.locationText.text = restaurantAddress
 
-      //  getRestaurantDetailsApi()
-      //  getRestaurantDetailsObserver()
+       getRestaurantDetailsApi()
+       getRestaurantDetailsObserver()
 
         binding.closeImg.setOnClickListener {
             finish()
@@ -94,10 +94,10 @@ class RestaurantDetailsActivity : AppCompatActivity() {
     }
 
     // get restaurant detail api
-
-  /*  private fun getRestaurantDetailsApi() {
+   private fun getRestaurantDetailsApi() {
 
         restaurantDetailModelView.getAllCategory(activity, restaurantId)
+
     }
 
     private fun getRestaurantDetailsObserver() {
@@ -125,7 +125,7 @@ class RestaurantDetailsActivity : AppCompatActivity() {
                 ErrorUtil.handlerGeneralError(this, it)
             }
         }
-    }*/
+    }
 
     private fun showMenuBottomSheet() {
         val view = layoutInflater.inflate(R.layout.menu_list_dialog, null)
@@ -158,9 +158,12 @@ class RestaurantDetailsActivity : AppCompatActivity() {
         val scrollRunnable = object : Runnable {
             override fun run() {
                 if (currentPosition < itemCount) {
+
                     binding.offerRecyclerview.smoothScrollToPosition(currentPosition)
                     currentPosition++
+
                 } else {
+
                     currentPosition = 0
                     binding.offerRecyclerview.smoothScrollToPosition(currentPosition)
                 }

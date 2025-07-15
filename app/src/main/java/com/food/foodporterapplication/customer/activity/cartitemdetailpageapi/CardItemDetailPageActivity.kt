@@ -1,23 +1,19 @@
 package com.food.foodporterapplication.customer.activity.cartitemdetailpageapi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.cremation.funeralcremation.utils.ErrorUtil
 import com.food.foodporterapplication.R
-import com.food.foodporterapplication.customer.adapter.CompleteYourMealAdapter
 import com.food.foodporterapplication.customer.fragment.cartItemDetail.model.CartItemFragment
-import com.food.foodporterapplication.customer.fragment.CheckoutFragment
+import com.food.foodporterapplication.customer.fragment.checkoutorderapi.CheckoutFragment
 import com.food.foodporterapplication.databinding.ActivityCardItemDetailPageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CardItemDetailPageActivity : AppCompatActivity(), CartItemFragment.OnCartItemClickListener, CheckoutFragment.OnCheckoutClickListener {
     private lateinit var binding: ActivityCardItemDetailPageBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,14 +24,12 @@ class CardItemDetailPageActivity : AppCompatActivity(), CartItemFragment.OnCartI
             finish()
         }
 
-        // Load CartItemFragment initially
         supportFragmentManager.beginTransaction()
             .replace(R.id.menuDetailFrameLayout, CartItemFragment())
             .commit()
     }
 
-    // From CartItemFragment -> navigates to CheckoutFragment
-    override fun onCartButtonClickListener() {
+    override fun onCartNextButtonClickListener() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.menuDetailFrameLayout, CheckoutFragment())
             .commit()
@@ -48,8 +42,16 @@ class CardItemDetailPageActivity : AppCompatActivity(), CartItemFragment.OnCartI
 
     }
 
-    // Called from inside CheckoutFragment -> just change the circle color
-    override fun onCheckoutButtonListener() {
+    override fun onCheckoutBackButtonListener() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.menuDetailFrameLayout, CartItemFragment())
+            .commit()
+
+        binding.step3Circle.setBackgroundResource(R.drawable.circle_filled_outline)
+        binding.step3Circle.setTextColor(ContextCompat.getColor(this,R.color.black))
+        binding.viewMenuLine.visibility = View.GONE
+        binding.progressLine.visibility = View.VISIBLE
+        binding.viewMenuLine.setBackgroundResource(R.color.gray)
 
     }
 }

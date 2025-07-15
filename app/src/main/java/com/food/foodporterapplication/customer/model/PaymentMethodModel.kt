@@ -1,3 +1,3 @@
 package com.food.foodporterapplication.customer.model
 
-class PaymentMethodModel ()
+class PaymentMethodModel (val image: Int, val text: String)

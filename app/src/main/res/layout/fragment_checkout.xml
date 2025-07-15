@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".customer.fragment.CheckoutFragment">
+    tools:context=".customer.fragment.checkoutorderapi.CheckoutFragment">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
@@ -94,22 +94,22 @@
                     android:id="@+id/phoneEtName"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/grey_border_btn"
                     android:ems="3"
                     android:hint="Delivery instructions"
                     android:maxLength="10"
-                    android:layout_marginTop="15dp"
                     android:paddingLeft="15dp"
-                    app:layout_constraintWidth_percent=".94"
                     android:paddingRight="15dp"
                     android:text=""
                     android:textColorHint="@color/grey1"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginBottom="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/addAddressLocation"/>
+                    app:layout_constraintTop_toBottomOf="@+id/addAddressLocation"
+                    app:layout_constraintWidth_percent=".94" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -121,7 +121,7 @@
                 android:background="@drawable/checkout_border_bg"
                 android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".3"
+                app:layout_constraintHeight_percent=".22"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/deliveryAddressConsts"
                 app:layout_constraintWidth_percent=".94">
@@ -153,7 +153,7 @@
                         android:layout_marginStart="15dp"
                         android:text="Payment method"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/paymentIcon"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -172,16 +172,81 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/paymentMethodRecyclerview"
-                    android:layout_width="match_parent"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/upiConst"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/grey_border_btn"
+                    android:padding="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/addPaymentConst" />
+                    app:layout_constraintTop_toBottomOf="@+id/addPaymentConst"
+                    app:layout_constraintWidth_percent=".93">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/paymentImg"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/gpay"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/paymentMethodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Paid via UPI"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/paymentImg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cashPaymentConst"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/grey_border_btn"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/upiConst"
+                    app:layout_constraintWidth_percent=".93">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/cashPayImg"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/money"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cashMathodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Cash"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cashPayImg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -226,7 +291,7 @@
                         android:layout_marginStart="15dp"
                         android:text="Order summary"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="17sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/orderIcon"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -393,6 +458,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
@@ -406,7 +472,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/standardDeliveryConsts" />
 
                 <TextView
-                    android:id="@+id/appyVoucherText"
+                    android:id="@+id/applyVoucherText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -426,14 +492,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="3dp"
+                    android:layout_marginBottom="5dp"
                     android:text="View all coupon"
                     android:textColor="@color/red"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appyVoucherText" />
+                    app:layout_constraintTop_toBottomOf="@+id/applyVoucherText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -500,26 +566,54 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/totalPriceText" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/verifyPhoneBtn"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/red_btn"
-            android:text="Verify phone number"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textFontWeight="500"
-            android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bottomViewLineLine"
             app:layout_constraintWidth_percent=".92">
 
-        </androidx.appcompat.widget.AppCompatButton>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/checkoutBackBtn"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/red_btn"
+                android:text="Back"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".45">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/checkoutBtn"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/red_btn"
+                android:text="Checkout"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".45">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

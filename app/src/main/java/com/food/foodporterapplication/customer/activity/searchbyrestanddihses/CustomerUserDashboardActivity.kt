@@ -20,7 +20,7 @@ import com.food.foodporterapplication.customer.activity.searchbyrestanddihses.mo
 import com.food.foodporterapplication.customer.bottomsheet.AddBottomSheet
 import com.food.foodporterapplication.customer.fragment.AccountFragment
 import com.food.foodporterapplication.customer.fragment.homepage.HomeFragment
-import com.food.foodporterapplication.customer.fragment.MyOrderFragment
+import com.food.foodporterapplication.customer.fragment.myorderlist.MyOrderFragment
 import com.food.foodporterapplication.customer.fragment.SearchFragment
 import com.food.foodporterapplication.databinding.ActivityCustomerUserDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -216,8 +216,11 @@ class CustomerUserDashboardActivity : AppCompatActivity() {
             binding.accountTextViewUser.setTextColor(ContextCompat.getColor(this, R.color.white))
 
             showHomeFragment()
+
         } else {
+
             finish()
+
         }
     }
 
@@ -231,7 +234,4 @@ class CustomerUserDashboardActivity : AppCompatActivity() {
 
         fragmentTransaction.commit()
     }
-
-
-
 }

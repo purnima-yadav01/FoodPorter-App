@@ -15,13 +15,15 @@ import com.food.foodporterapplication.customer.activity.addtocartitemapi.model.A
 import com.food.foodporterapplication.customer.adapter.AddToItemAdapter
 import com.food.foodporterapplication.customer.model.AddToItemModel
 import com.food.foodporterapplication.databinding.ActivityMenuItemAddBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MenuItemAddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuItemAddBinding
     private val addToCartModelView: AddToCartModelView by viewModels()
     private lateinit var adapter: AddToItemAdapter
     private var clickValue = "1"
-    private var dishesId: Int = 0
+    private var dishId: Int = 0
     private var dishName = ""
     private var dishPrice = ""
     private var itemDescription = ""
@@ -32,14 +34,14 @@ class MenuItemAddActivity : AppCompatActivity() {
         binding = ActivityMenuItemAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dishesId = intent.getIntExtra("selectedItemId", 0)
-        dishName = intent.getStringExtra("selectedItemName").toString()
-        dishPrice = intent.getStringExtra("selectedItemPrice").toString()
+        dishId = intent.getIntExtra("dishId", 0)
+        dishName = intent.getStringExtra("dishName").toString()
+        dishPrice = intent.getStringExtra("dishPrice").toString()
         itemDescription = intent.getStringExtra("selectedItemDes").toString()
 
         Log.e("description", itemDescription)
 
-        val imageUrl = intent.getStringExtra("selectedItemImage")
+        val imageUrl = intent.getStringExtra("dishImage")
         Glide.with(this).load(imageUrl).into(binding.itemMainImage)
 
         binding.foodItemName.text = dishName

@@ -60,14 +60,31 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.7" />
 
+
+        <TextView
+            android:id="@+id/addOnItemText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Veg Manchurian Bowl"
+            android:textColor="@color/darkgray"
+            android:textSize="11sp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="3"
+            app:layout_constraintStart_toEndOf="@+id/itemImageConstraint"
+            app:layout_constraintTop_toBottomOf="@+id/ItemName"
+            app:layout_constraintWidth_percent="0.58" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/addPassengerCountConst"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toEndOf="@+id/itemImageConstraint"
-            app:layout_constraintTop_toBottomOf="@+id/ItemName">
+            app:layout_constraintTop_toBottomOf="@+id/addOnItemText">
 
             <LinearLayout
                 android:id="@+id/decreaseItemLayout"

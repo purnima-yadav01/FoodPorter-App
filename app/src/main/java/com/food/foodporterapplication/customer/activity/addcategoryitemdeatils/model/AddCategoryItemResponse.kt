@@ -1,7 +1,6 @@
 package com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.model
 
 import com.google.gson.annotations.Expose
-
 import com.google.gson.annotations.SerializedName
 
 class AddCategoryItemResponse {
@@ -70,5 +69,10 @@ class AddCategoryItemResponse {
         @SerializedName("offer")
         @Expose
         var offer: String? = null
+
+        @SerializedName("quantity")
+        @Expose
+        var quantity: Int? = null
+
     }
 }

@@ -3,6 +3,7 @@ package com.food.foodporterapplication.customer.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.food.foodporterapplication.R
 import com.food.foodporterapplication.customer.adapter.PaymentHistoryAdapter
 import com.food.foodporterapplication.customer.model.PaymentMethodModel
 import com.food.foodporterapplication.databinding.ActivityPaymentMethodBinding
@@ -21,11 +22,11 @@ class PaymentMethodActivity : AppCompatActivity() {
         }
 
         val data = listOf(
-            PaymentMethodModel(),
-            PaymentMethodModel(),
-            PaymentMethodModel(),
-            PaymentMethodModel(),
-            PaymentMethodModel(),
+            PaymentMethodModel(R.drawable.gpay, "Pay Via UPI"),
+            PaymentMethodModel(R.drawable.gpay, "Pay Via UPI"),
+            PaymentMethodModel(R.drawable.gpay, "Pay Via UPI"),
+            PaymentMethodModel(R.drawable.gpay, "Pay Via UPI"),
+            PaymentMethodModel(R.drawable.gpay, "Pay Via UPI"),
 
             )
 

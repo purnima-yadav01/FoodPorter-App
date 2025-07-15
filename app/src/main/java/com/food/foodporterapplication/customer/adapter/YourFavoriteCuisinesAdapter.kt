@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.food.foodporterapplication.R
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.CategoryByRestDishesActivity
 import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.MenuItemDetailActivity
 import com.food.foodporterapplication.customer.activity.categoryorderitem.model.FavoriteCuisinesResponse
 import com.food.foodporterapplication.customer.application.FoodPorter
@@ -35,7 +36,7 @@ class YourFavoriteCuisinesAdapter (val context: Context, private val categoryIte
         holder.textDiscount.text = modelView.discount.toString()
 
         holder.itemView.setOnClickListener {
-            val i = Intent(context, MenuItemDetailActivity::class.java)
+            val i = Intent(context, CategoryByRestDishesActivity::class.java)
            FoodPorter.encryptedPrefs.restaurantId = modelView.id!!.toInt()
             i.putExtra("restaurantName", modelView.name)
             i.putExtra("restaurantRating", modelView.rating)

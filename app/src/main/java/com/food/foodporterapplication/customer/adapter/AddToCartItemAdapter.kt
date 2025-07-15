@@ -11,28 +11,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.food.foodporterapplication.R
 import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.OnAddItemClickListener
-import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.OnQuantityListener
+import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.OnUpdateQuantityListener
 import com.food.foodporterapplication.customer.activity.addcategoryitemdeatils.model.AddCategoryItemResponse
 import com.food.foodporterapplication.customer.application.FoodPorter
-
 
 class AddToCartItemAdapter(
     val context: Context,
     private val categoryItemList: List<AddCategoryItemResponse.Datum>,
     private val listener: OnAddItemClickListener,
-    private val quantityUpdate: OnQuantityListener
+    private val quantityUpdate: OnUpdateQuantityListener
 ) : RecyclerView.Adapter<AddToCartItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.menu_add_to_card_layout, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.menu_add_to_card_layout, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val modelView = categoryItemList[position]
         val id = modelView.id ?: return
-
-        val quantity = FoodPorter.quantityEncryptedPrefs.getQuantity(id)
+        val quantity = modelView.quantity ?: 0
 
         Glide.with(context).load(modelView.image).into(holder.itemImg)
         holder.foodItemName.text = modelView.name
@@ -51,8 +50,6 @@ class AddToCartItemAdapter(
         }
 
         holder.addItemText.setOnClickListener {
-            FoodPorter.quantityEncryptedPrefs.setQuantity(id, 1)
-            notifyItemChanged(position)
             listener.onAddItemClicked(
                 id,
                 modelView.image ?: "",
@@ -60,35 +57,22 @@ class AddToCartItemAdapter(
                 modelView.price ?: "",
                 modelView.description ?: ""
             )
-            quantityUpdate.quantityClick(id, 1)
         }
 
         holder.incrementImage.setOnClickListener {
-            val newQty = quantity + 1
-            FoodPorter.quantityEncryptedPrefs.setQuantity(id, newQty)
-            notifyItemChanged(position)
-            quantityUpdate.quantityClick(id, newQty)
+            quantityUpdate.quantityClick(position, id, quantity + 1)
         }
 
         holder.decrementImages.setOnClickListener {
-            val newQty = quantity - 1
-            if (newQty <= 0) {
-                FoodPorter.quantityEncryptedPrefs.removeQuantity(id)
+            if (quantity > 1) {
+                quantityUpdate.quantityClick(position, id, quantity - 1)
             } else {
-                FoodPorter.quantityEncryptedPrefs.setQuantity(id, newQty)
+                quantityUpdate.quantityClick(position, id, 0)
             }
-            notifyItemChanged(position)
-            quantityUpdate.quantityClick(id, newQty)
         }
     }
 
     override fun getItemCount(): Int = categoryItemList.size
-
-    fun updateItemQuantity(itemId: Int, quantity: Int) {
-        FoodPorter.quantityEncryptedPrefs.setQuantity(itemId, quantity)
-        val index = categoryItemList.indexOfFirst { it.id == itemId }
-        if (index != -1) notifyItemChanged(index)
-    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val foodItemName: TextView = itemView.findViewById(R.id.foodItemName)

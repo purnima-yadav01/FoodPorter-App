@@ -30,6 +30,12 @@
         android:theme="@style/Theme.FoodPorterApplication"
         tools:targetApi="31">
         <activity
+            android:name=".customer.activity.addcategoryitemdeatils.CategoryByRestDishesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".customer.activity.PaymentMethodActivity"
+            android:exported="false" />
+        <activity
             android:name=".customer.activity.RestaurantDishesActivity"
             android:exported="false" />
         <activity
@@ -90,7 +96,7 @@
             android:name=".customer.activity.MyOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".customer.activity.OrderDetailsPageActivity"
+            android:name=".customer.activity.orderdetailpage.OrderDetailsPageActivity"
             android:exported="false" />
         <activity
             android:name=".customer.activity.AddAddressActivity"

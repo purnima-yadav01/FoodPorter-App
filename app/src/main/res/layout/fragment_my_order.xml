@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightblues"
-    tools:context=".customer.fragment.MyOrderFragment">
+    tools:context=".customer.fragment.myorderlist.MyOrderFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainTopConstraint"

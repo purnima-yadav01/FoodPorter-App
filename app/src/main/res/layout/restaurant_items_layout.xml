@@ -164,6 +164,8 @@
             android:text="Punjab all time favorite rajma with fragrant basmati rice[750 mi] for rectangle combo bowl."
             android:textColor="@color/darkgray"
             android:textSize="13sp"
+            android:ellipsize="end"
+            android:maxLines="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/flatOfferText"
             app:layout_constraintWidth_percent="0.6" />
